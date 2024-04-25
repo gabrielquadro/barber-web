@@ -1,9 +1,15 @@
 import { useState, ReactNode, createContext } from "react";
-
+import { destroyCookie, setCookie } from "nookies";
+import Router from "next/router";
+import { api } from "../services/apiClient";
+import { patchFetch } from "next/dist/server/app-render/entry-base";
+import path from "path";
 interface AuthContextData {
     user: UserProps;
     isAuthenticated: boolean;
-    signIn: (credencials : SignInProps) => Promise<void>
+    signIn: (credencials: SignInProps) => Promise<void>
+    signUp: (credencials: SignUpProps) => Promise<void>
+    logoutUser: () => Promise<void>
 }
 
 interface UserProps {
@@ -28,7 +34,24 @@ interface SignInProps {
     password: string;
 }
 
+interface SignUpProps {
+    name: string;
+    email: string;
+    password: string;
+}
+
 export const AuthContext = createContext({} as AuthContextData)
+
+export function signOut() {
+    console.log('Error signout')
+    try {
+        destroyCookie(null, '@barber.token', { path: '/' })
+        Router.push('/login');
+    } catch (err) {
+        console.log('Erro ao sair');
+    }
+}
+
 
 export function AuthProvider({ children }: AuthProviderProps) {
 
@@ -36,13 +59,70 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const isAuthenticated = !!user;
 
     async function signIn({ email, password }: SignInProps) {
-        console.log({
-            email,
-            password
-        })
+        try {
+            const response = await api.post('/session', {
+                email,
+                password
+            })
+
+            const { id, name, token, subscriptions, endereco } = response.data;
+
+            setCookie(undefined, '@barber.token', token, {
+                maxAge: 60 * 60 * 24 * 30, //expira em 1 mes
+                patch: '/'
+            })
+
+            setUser({
+                id,
+                name,
+                email,
+                endereco,
+                subscriptions
+            })
+
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+            Router.push('/dashboard');
+
+        } catch (err) {
+            console.log('Erro ao entrar', err);
+        }
     }
+
+    async function signUp({ name, email, password }: SignUpProps) {
+        try {
+            const response = await api.post('/user', {
+                name,
+                email,
+                password
+            })
+
+            Router.push('/login');
+
+        } catch (err) {
+            console.log('Erro ao cadastrar', err);
+        }
+    }
+
+    async function logoutUser() {
+        try {
+            destroyCookie(null, '@barber.token', { path: '/' })
+            setUser(null)
+            Router.push('/login');
+        } catch (err) {
+            console.log('Erro ao sair', err);
+        }
+    }
+
+
     return (
-        <AuthContext.Provider value={{ user, isAuthenticated , signIn }}>
+        <AuthContext.Provider value={{
+            user,
+            isAuthenticated,
+            signIn,
+            signUp,
+            logoutUser
+        }}>
             {children}
         </AuthContext.Provider>
     )
