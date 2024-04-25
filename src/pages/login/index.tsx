@@ -5,6 +5,8 @@ import Link from "next/link"
 import logoImg from "../../../public/images/logo.svg"
 import { Center, Flex, Text, Input, Button } from "@chakra-ui/react"
 import { AuthContext } from "@/src/context/AuthContext"
+import { canSSRGuest } from "@/src/utils/canSSRGuest"
+
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -12,6 +14,9 @@ export default function Login() {
   const { signIn } = useContext(AuthContext)
 
   async function handleLogin() {
+    if (email === '' || password === '') {
+      return;
+    }
     await signIn({
       email,
       password
@@ -81,3 +86,12 @@ export default function Login() {
     </>
   )
 }
+
+//rota public
+export const getServerSideProps = canSSRGuest(async (ctx) => {
+  return {
+      props: {
+
+      }
+  }
+})

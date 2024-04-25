@@ -5,7 +5,7 @@ import Link from "next/link"
 import logoImg from "../../../public/images/logo.svg"
 import { Center, Flex, Text, Input, Button } from "@chakra-ui/react"
 import { AuthContext } from "@/src/context/AuthContext"
-
+import { canSSRGuest } from "@/src/utils/canSSRGuest"
 
 export default function Register() {
 
@@ -18,7 +18,7 @@ export default function Register() {
   async function handleRegister() {
     if (name === '' && email === '' && password === '') {
       return;
-    }else{
+    } else {
       await signUp({
         name,
         email,
@@ -103,3 +103,12 @@ export default function Register() {
     </>
   )
 }
+
+//rota public
+export const getServerSideProps = canSSRGuest(async (ctx) => {
+  return {
+    props: {
+
+    }
+  }
+})
