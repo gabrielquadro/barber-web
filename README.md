@@ -18,23 +18,22 @@ Banco de dados: PostgresSQL
 
 ![image](https://github.com/gabrielquadro/barber-web/assets/61526044/cf82d481-4f72-4e16-8360-c6ea54b38b83)
 
+Login
 
+![image](https://github.com/user-attachments/assets/29cef979-2ad9-4646-ae83-4ea713c343e6)
 
+Regisster
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![image](https://github.com/user-attachments/assets/3a861639-19c5-4cc0-ab35-0bd6d8510571)
 
-## Getting Started
+Perfil
 
-First, run the development server:
+![image](https://github.com/user-attachments/assets/68cb65d3-0682-4a24-9867-bf4f64fedc88)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Novo corte
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![image](https://github.com/user-attachments/assets/4e8361b6-8be7-4d62-93b6-8eec0453ec53)
+
+Lista de cortes
+![image](https://github.com/user-attachments/assets/dbafa089-23ad-461f-9923-12fcd8a25a97)
+
