@@ -6,6 +6,10 @@ Backend: https://github.com/gabrielquadro/barberBackend?tab=readme-ov-file
 
 Tecnologias: NodeJS, Typescript, Express, prisma, JWT.
 
+Instalação: yarn install
+
+Como inicializar: yarn dev
+
 Banco de dados: PostgresSQL
 
 ![image](https://github.com/gabrielquadro/barber-web/assets/61526044/cf82d481-4f72-4e16-8360-c6ea54b38b83)
