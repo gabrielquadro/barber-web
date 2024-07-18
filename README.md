@@ -1,20 +1,23 @@
 Sistema para o controle de uma barbearia, possibilitando adicionar novos serviços como corte, barba, e agendar horários. Também há um sistema de usuário premium com um sistema d epagamento integrado.
 
-Tecnologias: ReactJS, NextJS, Typescript e Chakra UI
+Tecnologias front end: ReactJS, NextJS, Typescript e Chakra UI
 
-Backend: https://github.com/gabrielquadro/barberBackend?tab=readme-ov-file
+Backend: https://github.com/gabrielquadro/barberBackend
 
-Tecnologias: NodeJS, Typescript, Express, prisma, JWT.
+Tecnologias backend: NodeJS, Typescript, Express, prisma, JWT.
+
+Banco de dados: PostgresSQL
 
 Instalação: yarn install
 
 Como inicializar:
 
+  Inicializar a api disponível em https://github.com/gabrielquadro/barberBackend
+
   yarn dev
 
   Navegador: http://localhost:3000/login
 
-Banco de dados: PostgresSQL
 
 ![image](https://github.com/gabrielquadro/barber-web/assets/61526044/cf82d481-4f72-4e16-8360-c6ea54b38b83)
 
