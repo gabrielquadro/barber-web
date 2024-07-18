@@ -8,7 +8,11 @@ Tecnologias: NodeJS, Typescript, Express, prisma, JWT.
 
 Instalação: yarn install
 
-Como inicializar: yarn dev
+Como inicializar:
+
+  yarn dev
+
+  Navegador: http://localhost:3000/login
 
 Banco de dados: PostgresSQL
 
